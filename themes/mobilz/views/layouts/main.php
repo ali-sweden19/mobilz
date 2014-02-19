@@ -104,8 +104,7 @@
 
     </div> <!-- Footer -->
     
-    <!-- JavaScript -->
-    <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.js"></script>
+    <!-- Java Script -->
     <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.js"></script>
 
   </body>

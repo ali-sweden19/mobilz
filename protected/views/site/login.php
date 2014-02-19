@@ -8,46 +8,56 @@ $this->breadcrumbs=array(
 	'Login',
 );
 ?>
-
-<h1>Login</h1>
-
-<p>Please fill out the following form with your login credentials:</p>
-
-<div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
+<br /><br /><br />
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'login-form',
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
 )); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username'); ?>
-		<?php echo $form->error($model,'username'); ?>
+<div class="container">
+    <div class="row">
+    	
+    	<div class="col-md-4 col-md-offset-4">
+    		<?php echo $form->errorSummary($model); ?>
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h4 class="panel-title icon-xs"><i class="fa fa-unlock icon-sm"></i>Login</h4>
+			 	</div>
+			  	<div class="panel-body">
+			    	<!-- <form accept-charset="UTF-8" role="form"> -->
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <!--  <input class="form-control" placeholder="E-mail" name="email" type="text"> -->
+			    		    <?php echo $form->textField($model,'username', array('class'=>'form-control','placeholder'=>"E-mail")); ?>
+			    		</div>
+			    		<div class="form-group">
+			    			<?php echo $form->passwordField($model,'password', array('class'=>'form-control','placeholder'=>"Password")); ?>
+			    			<!--  <input class="form-control" placeholder="Password" name="password" type="password" value=""> -->
+			    		</div>
+			    		<div class="checkbox">
+			    	    	<label>
+			    	    		<?php echo $form->checkBox($model,'rememberMe'); ?>
+			    	    		<?php echo $form->label($model,'rememberMe', array('class'=>'form-control', 'style'=>'border:none;')); ?>
+			    	    		<!--  <input name="remember" type="checkbox" value="Remember Me">  Remember Me -->
+			    	    	</label>
+			    	    </div>
+                        <div class="form-group">
+                            <?php echo CHtml::link('Forgot Password?',array('site/forgotpassword'), array('class'=>'pull-right')); ?>
+                            <br />
+                        </div>
+			    	    <?php echo CHtml::submitButton('Login', array('class'=>'btn btn-lg btn-success btn-block')); ?>
+			    		<!--  <input class="btn btn-lg btn-success btn-block" type="submit" value="Login"> -->
+			    	</fieldset>
+			      	<!-- </form> -->
+			      	
+                      <hr/>
+                    <center><h4>OR</h4></center>
+                    <a class="btn btn-lg btn-facebook btn-block" href="login?social=facebook" title="Login via facebook">Login via facebook</a>
+			    </div>
+			</div>
+		</div>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
-		<?php echo $form->error($model,'password'); ?>
-		<p class="hint">
-			Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-		</p>
-	</div>
-
-	<div class="row rememberMe">
-		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'rememberMe'); ?>
-		<?php echo $form->error($model,'rememberMe'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
-	</div>
-
+</div>
 <?php $this->endWidget(); ?>
-</div><!-- form -->

@@ -1,0 +1,391 @@
+2014/02/19 22:55:04 [error] [php] include(Modallogin.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (/opt/lampp/htdocs/yii/framework/YiiBase.php:427)
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWidgetFactory.php(146): import()
+#1 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget()
+#2 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(172): SiteController->createWidget()
+#3 /home/ali/projects/mobilz/themes/mobilz/views/layouts/main.php(114): SiteController->widget()
+#4 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(126): require()
+#5 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#6 /opt/lampp/htdocs/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#7 /opt/lampp/htdocs/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#8 /opt/lampp/htdocs/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#9 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
+#10 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
+#11 /home/ali/projects/mobilz/themes/mobilz/views/layouts/column1.php(6): SiteController->endContent()
+#12 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(126): require()
+#13 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#14 /opt/lampp/htdocs/yii/framework/web/CController.php(784): SiteController->renderFile()
+#15 /home/ali/projects/mobilz/protected/controllers/SiteController.php(32): SiteController->render()
+#16 /opt/lampp/htdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#17 /opt/lampp/htdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#18 /opt/lampp/htdocs/yii/framework/web/CController.php(286): SiteController->runAction()
+#19 /opt/lampp/htdocs/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#20 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#21 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#22 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /home/ali/projects/mobilz/index.php(13): CWebApplication->run()
+REQUEST_URI=/mobilzyii/
+in /home/ali/projects/mobilz/themes/mobilz/views/layouts/main.php (114)
+in /home/ali/projects/mobilz/themes/mobilz/views/layouts/column1.php (6)
+in /home/ali/projects/mobilz/protected/controllers/SiteController.php (32)
+2014/02/19 23:55:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "features.html".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('features.html')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobilzyii/features.html
+HTTP_REFERER=http://localhost/mobilzyii/
+---
+2014/02/19 23:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/iph...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/iphone5.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/19 23:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/img...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/img1.jpeg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/19 23:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/img...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/img3.jpeg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/19 23:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/gal...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/galaxys3.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/19 23:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/img...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/img2.jpeg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/19 23:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/asc...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/ascend-p6.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/19 23:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/son...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/sony-xperia-z1.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/19 23:59:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/img...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/img1.jpeg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/19 23:59:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/img...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/img2.jpeg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/19 23:59:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/img...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/img3.jpeg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:01:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/img...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/img3.jpeg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:01:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/img...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/img2.jpeg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:01:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/son...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/sony-xperia-z1.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:01:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/iph...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/iphone5.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:01:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/gal...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/galaxys3.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:01:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/asc...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/ascend-p6.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:04:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/iph...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/iphone5.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:04:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/gal...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/galaxys3.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:04:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/son...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/sony-xperia-z1.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:04:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/asc...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/ascend-p6.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:06:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/asc...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/ascend-p6.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:06:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('images')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/son...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/images/sony-xperia-z1.jpg
+HTTP_REFERER=http://localhost/mobilzyii/site/
+---
+2014/02/20 00:37:03 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.TbActiveForm" is invalid. Make sure it points to an existing directory or file.' in /opt/lampp/htdocs/yii/framework/YiiBase.php:347
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWidgetFactory.php(146): YiiBase::import('bootstrap.widge...', true)
+#1 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(189): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /home/ali/projects/mobilz/protected/views/site/login.php(18): CBaseController->beginWidget('bootstrap.widge...', Array)
+#4 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(126): require('/home/ali/proje...')
+#5 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/ali/proje...', Array, true)
+#6 /opt/lampp/htdocs/yii/framework/web/CController.php(869): CBaseController->renderFile('/home/ali/proje...', Array, true)
+#7 /opt/lampp/htdocs/yii/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#8 /home/ali/projects/mobilz/protected/controllers/SiteController.php(99): CController->render('login', Array)
+#9 /opt/lampp/htdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#10 /opt/lampp/htdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /opt/lampp/htdocs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /opt/lampp/htdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#14 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#15 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/mobilzyii/site/login
+---
+2014/02/20 00:38:35 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.TbActiveForm" is invalid. Make sure it points to an existing directory or file.' in /opt/lampp/htdocs/yii/framework/YiiBase.php:347
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWidgetFactory.php(146): YiiBase::import('bootstrap.widge...', true)
+#1 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(189): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /home/ali/projects/mobilz/protected/views/site/login.php(18): CBaseController->beginWidget('bootstrap.widge...', Array)
+#4 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(126): require('/home/ali/proje...')
+#5 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/ali/proje...', Array, true)
+#6 /opt/lampp/htdocs/yii/framework/web/CController.php(869): CBaseController->renderFile('/home/ali/proje...', Array, true)
+#7 /opt/lampp/htdocs/yii/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#8 /home/ali/projects/mobilz/protected/controllers/SiteController.php(99): CController->render('login', Array)
+#9 /opt/lampp/htdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#10 /opt/lampp/htdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /opt/lampp/htdocs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /opt/lampp/htdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#14 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#15 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/mobilzyii/site/login
+---
+2014/02/20 00:38:37 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.TbActiveForm" is invalid. Make sure it points to an existing directory or file.' in /opt/lampp/htdocs/yii/framework/YiiBase.php:347
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWidgetFactory.php(146): YiiBase::import('bootstrap.widge...', true)
+#1 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(189): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /home/ali/projects/mobilz/protected/views/site/login.php(18): CBaseController->beginWidget('bootstrap.widge...', Array)
+#4 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(126): require('/home/ali/proje...')
+#5 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/ali/proje...', Array, true)
+#6 /opt/lampp/htdocs/yii/framework/web/CController.php(869): CBaseController->renderFile('/home/ali/proje...', Array, true)
+#7 /opt/lampp/htdocs/yii/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#8 /home/ali/projects/mobilz/protected/controllers/SiteController.php(99): CController->render('login', Array)
+#9 /opt/lampp/htdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#10 /opt/lampp/htdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /opt/lampp/htdocs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /opt/lampp/htdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#14 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#15 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/mobilzyii/site/login
+---
+2014/02/20 00:38:40 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.TbActiveForm" is invalid. Make sure it points to an existing directory or file.' in /opt/lampp/htdocs/yii/framework/YiiBase.php:347
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWidgetFactory.php(146): YiiBase::import('bootstrap.widge...', true)
+#1 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(189): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /home/ali/projects/mobilz/protected/views/site/login.php(18): CBaseController->beginWidget('bootstrap.widge...', Array)
+#4 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(126): require('/home/ali/proje...')
+#5 /opt/lampp/htdocs/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/ali/proje...', Array, true)
+#6 /opt/lampp/htdocs/yii/framework/web/CController.php(869): CBaseController->renderFile('/home/ali/proje...', Array, true)
+#7 /opt/lampp/htdocs/yii/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#8 /home/ali/projects/mobilz/protected/controllers/SiteController.php(99): CController->render('login', Array)
+#9 /opt/lampp/htdocs/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#10 /opt/lampp/htdocs/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /opt/lampp/htdocs/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /opt/lampp/htdocs/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('login')
+#14 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#15 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/mobilzyii/site/login
+---
+2014/02/20 00:43:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index.html".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('index.html')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('index.html')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/index.html')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/index.html
+HTTP_REFERER=http://localhost/mobilzyii/site/login
+---
+2014/02/20 00:43:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "features.html".' in /opt/lampp/htdocs/yii/framework/web/CController.php:483
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CController.php(270): CController->missingAction('features.html')
+#1 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(282): CController->run('features.html')
+#2 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/features.h...')
+#3 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/mobilzyii/site/features.html
+HTTP_REFERER=http://localhost/mobilzyii/site/login
+---

@@ -10,7 +10,10 @@ return array(
 	'name'=>'Mobilz',
     'defaultController' => 'site', 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array(
+		'log',
+		'bootstrap',
+	),
     // custom theme
     'theme'=>'mobilz',    
 	// autoloading model and component classes
@@ -35,6 +38,10 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+        'bootstrap' => array(
+		    'class' => 'ext.bootstrap.components.Bootstrap',
+		    'responsiveCss' => true,
+		), 
 		// uncomment the following to enable URLs in path-format
 		'urlManager'=>array(
 			'urlFormat'=>'path',

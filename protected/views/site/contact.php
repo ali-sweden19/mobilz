@@ -71,10 +71,8 @@ $this->breadcrumbs=array(
                                     <input type="checkbox" value="option1" /> YouTube
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" value="option1" /> Google
-                                </label>
-                                <label class="checkbox-inline">
                                     <input type="checkbox" value="option1" /> Twitter
+
                                 </label>
                             </div>
                         </div>

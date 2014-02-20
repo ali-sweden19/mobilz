@@ -11,7 +11,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="item active">
-                <img alt="image 1" src="<?php echo $imagesFolder.'img1.jpeg'; ?>" />
+                <img alt="image 1" src="<?php echo $imagesFolder.'mobiles_think_smart_2.jpg';?>" />
                 <div class="container">
                     <div class="carousel-caption">
                         <h1>My Heading Text</h1>
@@ -22,7 +22,7 @@
             </div>
 
             <div class="item">
-                <img alt="image 1" src="<?php echo $imagesFolder.'img2.jpeg'; ?>" />
+                <img alt="image 1" src="<?php echo $imagesFolder.'galaxy-banner.jpg'; ?>" />
                 <div class="container">
                     <div class="carousel-caption">
                         <h1>My Heading Text</h1>

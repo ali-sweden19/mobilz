@@ -511,3 +511,28 @@ Stack trace:
 REQUEST_URI=/mobilzyii/images/contact_us.png
 HTTP_REFERER=http://localhost/mobilzyii/site/index
 ---
+2014/02/20 12:57:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.png".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobilzyii/images/favicon.png
+---
+2014/02/20 12:57:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "contact.html".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('contact.html')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobilzyii/contact.html
+HTTP_REFERER=http://localhost/mobilzyii/
+---
+2014/02/20 15:17:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/favicon.png".' in /opt/lampp/htdocs/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /opt/lampp/htdocs/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('images/favicon....')
+#1 /opt/lampp/htdocs/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/ali/projects/mobilz/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/mobilzyii/images/favicon.png
+---

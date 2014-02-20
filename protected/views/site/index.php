@@ -31,7 +31,7 @@ $this->pageTitle=Yii::app()->name;
 
                 <div class="col-md-4">
                     <div style="float: left">
-                        <a href="#"><img width="40" height="40" alt="Contact" src="<?php echo $imagesFolder.'contact-icon.png'; ?>"></a>
+                        <a href="#"><img width="45" height="45" alt="Contact" src="<?php echo $imagesFolder.'contact-icon.png'; ?>"></a>
                     </div>
                     <div class="spaceLeft10" style="float: left">
                         <a href="#">Contact Us</a><br><span class="small">support@domain.com</span>

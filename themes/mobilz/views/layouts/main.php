@@ -18,32 +18,22 @@
   <body>
     <!-- Fixed Navigation bar with drop down box
     ================================================== -->
-    <div class="navbar shadow navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar shadow-bot navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-            <div class="navbar-header"> <!-- header -->
+            <div class="navbar-header"> <!-- nav header -->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">Mobilz</a>
+                <a href="<?php echo $this->createUrl('site/index'); ?>" class="navbar-brand">Mobilz</a>
             </div>   
-            <div class="navbar-collapse collapse"> <!-- body -->
+            <div class="navbar-collapse collapse"> <!-- nav body -->
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo $this->createUrl('site/index'); ?>">Home</a></li>
-                    <li><a href="features.html">Features</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="php-yii.html">PHP Yii</a></li>
-                            <li><a href="#">Twitter Bootstrap</a></li>
-                            <li><a href="#">AngularJS</a></li>
-                            <li><a href="#">NodeJS</a></li>
-                        </ul>
-                    </li>
                     <li><a href="<?php echo isset(Yii::app()->user->isGuest)? $this->createUrl('site/login'): $this->createUrl('site/logout');?>" >Login</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="<?php echo $this->createUrl('site/contact'); ?>">Contact</a></li>
                 </ul>
             </div>
 
@@ -61,7 +51,7 @@
     <br /><br />
         
     <!-- Footer and Modal -->
-    <div id="footer">
+    <div id="footer" class="shadow-top">
         <!-- Font Awesome 
     =================================== -->
             <div class="col-md-12">

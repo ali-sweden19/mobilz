@@ -97,10 +97,16 @@ body {
   background-color: #f5f5f5;
 }
 
-.shadow {
-    box-shadow: 0 0 30px black;
+.shadow-bot {
+    -webkit-box-shadow: 0px 2px 8px #000000;
+       -moz-box-shadow: 0px 2px 8px #000000;
+            box-shadow: 0px 2px 8px #000000;
 }
-
+.shadow-top {
+    -webkit-box-shadow: 0px -1px 8px #000000;
+       -moz-box-shadow: 0px -1px 8px #000000;
+            box-shadow: 0px -1px 8px #000000;
+}
 /*button facebook */
 .btn-facebook {
     color: #ffffff;

@@ -30,7 +30,7 @@
             </div>   
             <div class="navbar-collapse collapse"> <!-- body -->
                 <ul class="nav navbar-nav">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="<?php echo $this->createUrl('site/index'); ?>">Home</a></li>
                     <li><a href="features.html">Features</a></li>
                     <li><a href="about.html">About</a></li>
                     <li class="dropdown">
@@ -42,6 +42,7 @@
                             <li><a href="#">NodeJS</a></li>
                         </ul>
                     </li>
+                    <li><a href="<?php echo isset(Yii::app()->user->isGuest)? $this->createUrl('site/login'): $this->createUrl('site/logout');?>" >Login</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -57,13 +58,15 @@
         
     </div> <!-- wrap -->
     
-    <!-- Font Awesome 
+    <br /><br />
+        
+    <!-- Footer and Modal -->
+    <div id="footer">
+        <!-- Font Awesome 
     =================================== -->
-    <div class="container">
-        <div class="row">
             <div class="col-md-12">
-                <hr />
-                <div class="well" style="text-align: center;">
+                <br /><br />
+                <div class="well" style="text-align: center; border: none;">
                     <a href="#"> <i class="icon-lg fa fa-linkedin"></i></a>
                     <a href="#"> <i class="icon-lg fa fa-android"></i></a>
                     <a href="#"> <i class="icon-lg fa fa-twitter"></i></a>
@@ -73,12 +76,6 @@
                     <a href="#"> <i class="icon-lg fa fa-apple"></i></a>
                 </div>
             </div>
-        </div>
-    </div>
-        
-    <!-- Footer and Modal -->
-    <div class="container">
-        <div class="row">
             <div class="col-md-12">
                 <p>Copyright &COPY; SoftHem Tuts.
                     <a data-toggle="modal"  href="#terms">Terms & Conditions</a>
@@ -100,8 +97,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
     </div> <!-- Footer -->
     
     <!-- Java Script -->

@@ -59,39 +59,39 @@
         </div>
     </div>
     
-    
+    <br />
     <!-- Header Box -->
     <div class="container">
-        <br />
         <div class="row">
             <div class="col-md-12">
                 <div class="header-box">
                     <div class="col-md-4">
-                        <div style="float: left">
+                        <div class="col-md-2">
                             <a href="#"><img width="45" height="45" alt="Buy" src="<?php echo $imagesFolder.'manual.png'; ?>"></a>
                         </div>
-                        <div class="spaceLeft10" style="float: left">
+                        <div class="col-md-10">
                             <a href="#">Buy</a><br><span class="small">Select items to buy</span>
                         </div>
                     </div>
 
                     <div class="col-md-4">
-                        <div style="float: left">
+                        <div class="col-md-2">
                             <a href="#"><img width="45" height="45" alt="Pay" src="<?php echo $imagesFolder.'tour.png'; ?>"></a>
                         </div>
-                        <div class="spaceLeft10" style="float: left">
+                        <div class="col-md-10">
                             <a href="#">Pay</a><br><span class="small">You can pay via any credit card</span>
                         </div>
                     </div>
-
+                    
                     <div class="col-md-4">
-                        <div style="float: left">
+                        <div class="col-md-2">
                             <a href="#"><img width="45" height="45" alt="Contact" src="<?php echo $imagesFolder.'contact-icon.png'; ?>"></a>
                         </div>
-                        <div class="spaceLeft10" style="float: left">
+                        <div class="col-md-10">
                             <a href="#">Contact Us</a><br><span class="small">support@domain.com</span>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

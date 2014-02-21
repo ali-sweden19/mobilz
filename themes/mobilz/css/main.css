@@ -161,3 +161,22 @@ body {
         height: auto;
         position: relative;
     }
+    
+    .shopping-cart {
+        background-image: url("../images/shopping-bag.png");
+        background-position: 10px 15px;
+        background-repeat: no-repeat;
+        background-color: #EFF8FE;
+        cursor: pointer;
+        height: 70px;
+        min-width: 115px;
+        position: relative;
+        text-align: center;
+        line-height: 70px;
+        -webkit-border-bottom-right-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -moz-border-radius-bottomright: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }

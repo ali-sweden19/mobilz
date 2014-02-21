@@ -1,15 +1,14 @@
 <?php
 
-class ProductController extends Controller
+class CartController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-    public $imagesFolder;
 
-    /**
+	/**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -29,7 +28,7 @@ class ProductController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','add'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -50,10 +49,10 @@ class ProductController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($slug)
+	public function actionView($id)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModelBySlug($slug),
+			'model'=>$this->loadModel($id),
 		));
 	}
 
@@ -63,14 +62,14 @@ class ProductController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Product;
+		$model=new Cart;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Product']))
+		if(isset($_POST['Cart']))
 		{
-			$model->attributes=$_POST['Product'];
+			$model->attributes=$_POST['Cart'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -92,9 +91,9 @@ class ProductController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Product']))
+		if(isset($_POST['Cart']))
 		{
-			$model->attributes=$_POST['Product'];
+			$model->attributes=$_POST['Cart'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -123,14 +122,9 @@ class ProductController extends Controller
 	 */
 	public function actionIndex()
 	{
-        $criteria= new CDbCriteria;
-        $criteria->addCondition("published='yes'");
-        
-		$dataProvider=new CActiveDataProvider('Product', array(
-            'criteria'=>$criteria,
-        ));
+		$dataProvider=new CActiveDataProvider('Cart');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider
+			'dataProvider'=>$dataProvider,
 		));
 	}
 
@@ -139,10 +133,10 @@ class ProductController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Product('search');
+		$model=new Cart('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Product']))
-			$model->attributes=$_GET['Product'];
+		if(isset($_GET['Cart']))
+			$model->attributes=$_GET['Cart'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -153,41 +147,77 @@ class ProductController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Product the loaded model
+	 * @return Cart the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Product::model()->findByPk($id);
+		$model=Cart::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
-    
-    public function loadModelBySlug($slug) {
-        $model=  Product::model()->findByAttributes(array('slug'=>$slug));
-        if(isset($model))
-            return $model;
-        else
-            throw new CHttpException(404,'The requested product does not exist.');
-    }
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Product $model the model to be validated
+	 * @param Cart $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='product-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='cart-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
     
-    public function beforeAction($action) {
-        $this->imagesFolder= Yii::app()->request->baseUrl .'/images/';
-        return TRUE;
-    }
-    
+    /**
+	 * To add item by ajax to Cart
+	 */
+    public function actionAdd() {
+        $id = $_POST['id'];
+        // check if user is logged in
+        if(Yii::app()->user->isGuest) {
+            echo json_encode(array(
+                'status'=>'ok',
+                'items'=>'Items(8)',
+            ));
+            return;
+            echo json_encode(array(
+                'status'=>'user-not-logged'
+            ));
+            return;
+        }
+        
+		$user_id=Yii::app()->user->id;
+        
+		$product = Product::model()->getPublishedProduct($id);
+		if ($product !== null) {
+            Cart::model()->addProduct($product, $user_id);
+		} else {
+            echo json_encode(array(
+                'status'=>'product-not-valid'
+            ));
+            return;
+        }
+		
+        // if product added successfull return Cart
+		$CActiveDataProvider =new CActiveDataProvider('Cart', array(
+		    'criteria'=>array(
+		        'condition'=>'status_id != 8 AND user_id=' . $user_id ,
+		    )
+		));
+        
+		$resp=$this->renderPartial('_cart', array(
+			'CActiveDataProvider'=>$CActiveDataProvider,
+			),
+			TRUE
+		);
+        
+		$link=Yii::app()->createUrl('cart/index');
+		$arr['link']='<button onclick=window.location.href="'.$link.'" type="button" class="view_cart btn btn-success">View</button>';
+		$arr['grid']=$resp;
+        $arr['status']='ok';
+		echo json_encode($arr);
+	}
 }

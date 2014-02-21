@@ -112,4 +112,9 @@ class Product extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    public function getPublishedProduct($id) {
+       $model = Product::model()->findByAttributes(array('id'=>$id, 'published'=>'yes'));
+       return $model;
+    }
 }

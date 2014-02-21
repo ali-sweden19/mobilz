@@ -32,9 +32,27 @@
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo $this->createUrl('product/index'); ?>">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="<?php echo isset(Yii::app()->user->isGuest)? $this->createUrl('site/login'): $this->createUrl('site/logout');?>" >Login</a></li>
+                    <?php if(Yii::app()->user->isGuest){
+                        $url = $this->createUrl('site/login');
+                        $text = 'Login';
+                    } else {
+                        $url = $this->createUrl('site/logout');
+                        $text = 'Logout';
+                    }  ?>
+                    <li><a href="<?php echo $url; ?>"><?php echo $text; ?></a></li>
                     <li><a href="<?php echo $this->createUrl('site/contact'); ?>">Contact</a></li>
                 </ul>
+                
+                <form action="" class="navbar-form navbar-right">
+                <div class="input-group">
+                    <input type="Search" placeholder="Search..." class="form-control" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-info">
+                        <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </div>
+                </form>
             </div>
 
         </div>

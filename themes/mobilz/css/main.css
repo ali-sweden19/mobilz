@@ -179,4 +179,8 @@ body {
         -moz-border-radius-bottomleft: 5px;
         border-bottom-right-radius: 5px;
         border-bottom-left-radius: 5px;
+        
+        border-bottom: 1px solid #CCCCCC;
+        border-left: 1px solid #CCCCCC;
+        border-right: 1px solid #CCCCCC;
     }

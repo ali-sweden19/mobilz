@@ -72,7 +72,6 @@ $this->breadcrumbs=array(
                                 </label>
                                 <label class="checkbox-inline">
                                     <input type="checkbox" value="option1" /> Twitter
-
                                 </label>
                             </div>
                         </div>

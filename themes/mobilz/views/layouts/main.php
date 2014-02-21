@@ -26,11 +26,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="<?php echo $this->createUrl('site/index'); ?>" class="navbar-brand">Mobilz</a>
+                <a href="<?php echo $this->createUrl('product/index'); ?>" class="navbar-brand">Mobilz</a>
             </div>   
             <div class="navbar-collapse collapse"> <!-- nav body -->
                 <ul class="nav navbar-nav">
-                    <li><a href="<?php echo $this->createUrl('site/index'); ?>">Home</a></li>
+                    <li><a href="<?php echo $this->createUrl('product/index'); ?>">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="<?php echo isset(Yii::app()->user->isGuest)? $this->createUrl('site/login'): $this->createUrl('site/logout');?>" >Login</a></li>
                     <li><a href="<?php echo $this->createUrl('site/contact'); ?>">Contact</a></li>

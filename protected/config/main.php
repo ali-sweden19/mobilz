@@ -47,14 +47,16 @@ return array(
 			'urlFormat'=>'path',
 			'rules'=>array(
                 'index'=>'product/index',
-                'product/<slug:[\w\-]+>'=>'product/view',
+                'buy/<slug:[\w\-]+>'=>'product/view',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
             'showScriptName' => false,
 		),
-		
+		'db'=>array(
+			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+		),
 		// uncomment the following to use a MySQL database
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=mobilz',

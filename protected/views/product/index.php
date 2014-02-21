@@ -18,7 +18,7 @@ $this->menu=array(
     <!-- Custom thumbnail -->
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-8">
+            <div class="col-md-8 hidden-xs">
                 <h3>Items available</h3>
             </div>
             <div class="col-md-4">

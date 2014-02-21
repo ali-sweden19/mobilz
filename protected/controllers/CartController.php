@@ -178,46 +178,29 @@ class CartController extends Controller
         $id = $_POST['id'];
         // check if user is logged in
         if(Yii::app()->user->isGuest) {
+            // Check if product is valid 
+            $product = Product::model()->getPublishedProduct($id);
+            if ($product === null) {
+                echo json_encode(array(
+                    'status'=>'product-not-valid'
+                ));
+                return;
+            }
+            
+            $cart = new SessionCart();
+            $cart->add($id, 1);
+            $count = $cart->countCarts();
+            
+            $link =  $this->createUrl('cart/index');
+            $linkButton = '<button onclick=window.location.href="'.$link.'" type="button" class="view_cart btn btn-info">View</button>';
+
             echo json_encode(array(
                 'status'=>'ok',
-                'items'=>'Items(8)',
+                'items'=>"Items ($count)",
+                'linkButton'=>$linkButton,
             ));
-            return;
-            echo json_encode(array(
-                'status'=>'user-not-logged'
-            ));
+            
             return;
         }
-        
-		$user_id=Yii::app()->user->id;
-        
-		$product = Product::model()->getPublishedProduct($id);
-		if ($product !== null) {
-            Cart::model()->addProduct($product, $user_id);
-		} else {
-            echo json_encode(array(
-                'status'=>'product-not-valid'
-            ));
-            return;
-        }
-		
-        // if product added successfull return Cart
-		$CActiveDataProvider =new CActiveDataProvider('Cart', array(
-		    'criteria'=>array(
-		        'condition'=>'status_id != 8 AND user_id=' . $user_id ,
-		    )
-		));
-        
-		$resp=$this->renderPartial('_cart', array(
-			'CActiveDataProvider'=>$CActiveDataProvider,
-			),
-			TRUE
-		);
-        
-		$link=Yii::app()->createUrl('cart/index');
-		$arr['link']='<button onclick=window.location.href="'.$link.'" type="button" class="view_cart btn btn-success">View</button>';
-		$arr['grid']=$resp;
-        $arr['status']='ok';
-		echo json_encode($arr);
 	}
 }

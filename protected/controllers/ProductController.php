@@ -129,8 +129,13 @@ class ProductController extends Controller
 		$dataProvider=new CActiveDataProvider('Product', array(
             'criteria'=>$criteria,
         ));
+        
+        $sessionCart = new SessionCart();
+        $count = $sessionCart->getItemsCount();
+        
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider
+			'dataProvider'=>$dataProvider,
+            'itemsCount'=>$count,
 		));
 	}
 

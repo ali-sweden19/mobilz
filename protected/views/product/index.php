@@ -18,11 +18,15 @@ $this->menu=array(
     <!-- Custom thumbnail -->
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <h3>Items available</h3>
             </div>
-            <div class="col-md-3">
-                <div class="shopping-cart"><span id="shopping-cart">Items (0)</span> <button class="btn btn-sm btn-success">Checkout</button> </div>
+            <div class="col-md-4">
+                <div class="shopping-cart">
+                    <span id="shopping-cart"><?php echo $itemsCount; ?></span> 
+                    <button class="btn btn-sm btn-success">Checkout</button>
+                    <button class="btn btn-sm btn-default">My Account</button>
+                </div>
             </div>
         </div>
     </div>
@@ -63,7 +67,7 @@ $this->menu=array(
                 },
                 success: function(response) {
                     if(response['status']=='ok') {
-                        $(but).replaceWith(response['link']);
+                        $(but).replaceWith(response['linkButton']);
                         $('#shopping-cart').html(response['items']);
                     }
                 }

@@ -138,6 +138,7 @@ class CartController extends Controller
 	 */
 	public function actionIndex()
 	{
+        $this->updateQuantity();
         if(Yii::app()->user->isGuest) {
             $dataProvider=new CActiveDataProvider('Cart', array(
                 'data'=> Cart::model()->sessionToCart(),
@@ -150,6 +151,45 @@ class CartController extends Controller
 			'dataProvider'=>$dataProvider,
 		));
 	}
+    
+    private function updateQuantity() {
+        if (isset($_POST['quantity'])) { // you want to update cart 
+            $quantity = $_POST['quantity']; $model_errors='';
+            $user = Yii::app()->getComponent('user');
+            if(Yii::app()->user->isGuest) {
+                $sCart = new SessionCart;
+                $sessionCarts = $sCart->getCarts();
+                foreach($quantity as $cart_id=>$qty) {
+                    $model = new Cart; // we will validate by using dummy Cart model
+                    $model->product_id = $sessionCarts[$cart_id]->getId();
+                    $model->quantity = $qty;
+                    $model->validate();
+                    if($model->hasErrors()){
+                        $model_errors = CHtml::errorSummary($model);
+                        $user->setFlash(
+                            'error',
+                            "<strong> $model_errors </strong>"
+                        );
+                    } else {
+                       $sessionCarts[$cart_id]->updateQuantity($cart_id, $qty); 
+                    }
+                }
+            } else {
+                foreach($quantity as $cart_id=>$qty) {
+                    $model = Cart::model()->findByPk($cart_id);
+                    $model->quantity=$qty;
+                    $model->save();
+                    if($model->hasErrors()){
+                        $model_errors = CHtml::errorSummary($model);
+                        $user->setFlash(
+                            'error',
+                            "<strong> $model_errors </strong>"
+                        );
+                    }
+                }
+            }
+		}
+    }
     
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

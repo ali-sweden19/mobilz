@@ -249,4 +249,5 @@ class Cart extends CActiveRecord
         
         return $carts;
     }
+    
 }

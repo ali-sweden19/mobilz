@@ -156,6 +156,7 @@ class CartController extends Controller
         if (isset($_POST['quantity'])) { // you want to update cart 
             $quantity = $_POST['quantity']; $model_errors='';
             $user = Yii::app()->getComponent('user');
+            $noErrors = true;
             if(Yii::app()->user->isGuest) {
                 $sCart = new SessionCart;
                 $sessionCarts = $sCart->getCarts();
@@ -170,8 +171,9 @@ class CartController extends Controller
                             'error',
                             "<strong> $model_errors </strong>"
                         );
+                        $noErrors=FALSE;
                     } else {
-                       $sessionCarts[$cart_id]->updateQuantity($cart_id, $qty); 
+                       $sessionCarts[$cart_id]->updateQuantity($cart_id, $qty);
                     }
                 }
             } else {
@@ -185,9 +187,18 @@ class CartController extends Controller
                             'error',
                             "<strong> $model_errors </strong>"
                         );
+                        $noErrors=FALSE;
                     }
                 }
             }
+            
+            if($noErrors) {
+                $user->setFlash(
+                     'success',
+                     "<strong> Updated successfully. </strong>"
+                 );
+            }
+            
 		}
     }
     

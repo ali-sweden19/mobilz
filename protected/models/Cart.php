@@ -197,8 +197,8 @@ class Cart extends CActiveRecord
             $sessionCart = new SessionCart();
             $count = $sessionCart->getItemsCount();
         } else {
-            // @todo change user_id, gives one less
-            $count = Cart::model()->count('user_id=:user_id', array(':user_id' => 1));
+            $user_id = Yii::app()->user->id;
+            $count = Cart::model()->count('user_id=:user_id', array(':user_id' =>$user_id));
         }
         return $count;
     }

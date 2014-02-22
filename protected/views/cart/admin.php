@@ -14,8 +14,6 @@ $this->menu=array(
 
 ?>
 
-
-
 <!-- Items list
 ========================================== -->
 <div class="container">
@@ -100,7 +98,11 @@ $this->menu=array(
 
             <div class="pull-right">
                 <button type="submit" class="btn btn-primary">Update</button>
-                <button type="button" class="btn btn-success">Proceed to checkout</button>
+                <?php if(Yii::app()->user->isGuest) { ?>
+                    <button id="proceed-to-checkout" type="button" class="btn btn-success">Proceed to checkout</button>
+                <?php } else { ?>
+                    <a href="<?php echo $this->createUrl('cart/checkout') ;?>"  class="btn btn-success">Proceed to checkout</a>
+                <?php }?>
             </div>
             <div class="pull-left">
                 <a href="<?php echo $this->createUrl('product/index') ;?>" class="btn btn-info">Continue shopping</a>
@@ -113,3 +115,13 @@ $this->menu=array(
 
 
 <br /><br /><br /><br />
+
+<?php 
+    Yii::app()->clientScript->registerScript('show-loginbox', "
+    $('#proceed-to-checkout').live('click',function(){
+        $('#login-modal').click();
+        return false;
+    });
+
+    ");
+?>

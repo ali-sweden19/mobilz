@@ -84,27 +84,37 @@
                     <a href="#"> <i class="icon-lg fa fa-apple"></i></a>
                 </div>
             </div>
-            <div class="col-md-12">
-                <p>Copyright &COPY; SoftHem Tuts.
-                    <a data-toggle="modal"  href="#terms">Terms & Conditions</a>
-                </p>
-                <!-- Modal -->
-                <div class="modal fade" id="terms" role="dialog" aria-hidden="true" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3>Terms and Conditions</h3>
-                            </div>
-                            <div class="modal-body">
-                                <p>The text for terms goes here...</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        
+            <!-- Modal -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Copyright &COPY; SoftHem Tuts.
+                            <a id="login-modal" data-toggle="modal"  href="#terms">Terms & Conditions</a>
+                        </p>
+                        <!-- Modal -->
+                        <div class="modal fade" id="terms" role="dialog" aria-hidden="true" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <i id="pty_close" data-dismiss="modal" class="fa fa-times-circle-o icon-md pull-right"></i>
+                                    <div class="modal-header" style="padding: 10px;">
+                                        <img class="col-xs-3 col-sm-2 col-md-2 img-circle img-responsive" src="<?php echo Yii::app()->baseUrl . '/images/login-icon.png'; ?>" alt="Login here">
+                                        <h3>You need to login</h3>
+                                    </div>
+                                    <div class="modal-body" style="padding: 20px 0 0;">
+                                        <?php $this->widget('Modallogin'); ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+        
     </div> <!-- Footer -->
     
     <!-- Java Script -->

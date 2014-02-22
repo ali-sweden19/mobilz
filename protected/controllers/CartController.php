@@ -144,7 +144,12 @@ class CartController extends Controller
                 'data'=> Cart::model()->sessionToCart(),
             ));
         } else {
-            $dataProvider=new CActiveDataProvider('Cart');
+            $user_id = Yii::app()->user->id;
+            $dataProvider=new CActiveDataProvider('Cart', array(
+                'criteria'=> array(
+                    'condition'=>"user_id=$user_id"
+                )
+            ));
         }
         
 		$this->render('admin',array(
@@ -253,8 +258,8 @@ class CartController extends Controller
             $cart->add($id, 1);
             $cart->saveToSession();
         } else {
-            // @todo change user_id
-            Cart::model()->addProduct($product, 1);
+            $user_id = Yii::app()->user->id;
+            Cart::model()->addProduct($product, $user_id);
         }
         $count = Cart::model()->getItemsCount();
         echo json_encode(array(

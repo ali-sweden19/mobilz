@@ -198,3 +198,44 @@ body {
 .alert-block{padding-top:14px;padding-bottom:14px;}
 .alert-block>p,.alert-block>ul{margin-bottom:0;}
 .alert-block p+p{margin-top:5px;}
+
+#pty_close {
+    cursor: pointer;
+    border-radius: 100px;
+    color: #CC5639;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    position: absolute;
+    right: -20px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    top: -20px;
+    width: 30px;
+}
+
+.icon-lg {
+    font-size: 50px;
+    padding: 0 25px;
+    color: #269abc;
+}
+.icon-md {
+    font-size: 30px;
+    padding: 0 5px;
+    color: #269abc;
+}
+.icon-sm {
+    font-size: 25px;
+    padding: 0 10px 0px 0px;
+    color: #269abc;
+}
+.icon-xs {
+    font-size: 20px;
+    padding: 0 2px;
+    color: #269abc;
+}
+.clear33{
+    clear: both;
+}

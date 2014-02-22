@@ -108,43 +108,43 @@
             <div class="col-md-12">
                 <div class="header-box" style="padding-top: 20px;">
                     <div class="col-md-6">
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method visa"></label>
                         </div>
 
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method master-card"></label>
                         </div>
 
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method america-express"></label>
                         </div>
 
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method jcb"></label>
                         </div>
 
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method diners-club"></label>
                         </div>
 
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method discover"></label>
                         </div>
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4 col-md-offset-2">
 
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method-banks seb"></label>
                         </div>
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method-banks swed"></label>
                         </div>
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method-banks handelsbanken"></label>
                         </div>
-                        <div class="credit-card">
+                        <div class="credit-card col-md-2">
                             <label class="payment-method-banks nordea"></label>
                         </div>
 

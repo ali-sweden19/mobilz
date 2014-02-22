@@ -130,8 +130,7 @@ class ProductController extends Controller
             'criteria'=>$criteria,
         ));
         
-        $sessionCart = new SessionCart();
-        $count = $sessionCart->getItemsCount();
+        $count = Cart::model()->getItemsCount();
         
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

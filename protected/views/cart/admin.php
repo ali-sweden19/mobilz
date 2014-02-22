@@ -12,47 +12,74 @@ $this->menu=array(
 	array('label'=>'Create Cart', 'url'=>array('create')),
 );
 
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$('#cart-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
-<h1>Manage Carts</h1>
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
+<!-- Items list
+========================================== -->
+<div class="container">
+    <!-- Custom thumbnail -->
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h3>Cart</h3>
+            <div class="hidden-xs">
+               <hr /> 
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+        <?php $this->widget('bootstrap.widgets.TbExtendedGridView', array(
+            'id'=>'cart-grid',
+            'dataProvider'=>$dataProvider,
+            'type'=>'striped bordered',
+            'columns'=>array(
+                array(
+                    'header'=>'',
+                    'value'=>'$data->getThumbImgPath()',
+                    'type'=>'raw',
+                ),
+                array(
+                    'name'=>'product_id',
+                    'value'=>'$data->product->name',
+                ),
+                array(
+                    'header'=>'Price',
+                    'value'=>'$data->product->price',
+                ),
+                array(
+                    'name'=>'quantity',
+                    'type'=>'raw',
+                    'value'=>'CHtml::textField("quantity[$data->id]",$data->quantity,array("style"=>"width:50px;"))',
+                    'footer'=>'<strong>Total Price</strong>',
+                ),
+                array(
+                    'header'=>'Total',
+                    'value'=>'$data->getTotalPrice()',
+                    'class'=>'bootstrap.widgets.TbTotalSumColumn',
+                ),
+                array(
+                    'header' => Yii::t('ses', 'Remove'),
+                    'class' => 'bootstrap.widgets.TbButtonColumn',
+                    'deleteButtonUrl' => 'Yii::app()->createUrl("cart/delete/", array("id"=>$data->id))',
+                    "template"=>"{delete}",
+                ),
+            ),
+        )); ?>
+            
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-success">Proceed to checkout</button>
+            </div>
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'cart-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'product_id',
-		'quantity',
-		'user_id',
-		'status_id',
-		'tracking_id',
-		array(
-			'class'=>'CButtonColumn',
-		),
-	),
-)); ?>
+        </div>
+        
+    </div>
+
+</div> <!-- container -->
+
+
+<br /><br /><br /><br />

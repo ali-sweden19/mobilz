@@ -40,7 +40,7 @@
         
         public static function getItemsCount() {
             $count = self::countCarts();
-            return "Items ($count)";
+            return $count;
         }
         public static function countCarts() {
             return count(self::$carts);
@@ -54,7 +54,7 @@
             // check if session is started
             if(isset($_SESSION)) {
                 // clear
-                session_unset();
+                // unset($_SESSION['usercarts']);
                 $_SESSION['usercarts']=  self::$carts;
             } else {
                 session_start();
@@ -76,6 +76,14 @@
         
         public function __destruct() {
             self::saveToSession();
+        }
+        
+        public function getId() {
+            return $this->id;
+        }
+        
+        public function getQuantity() {
+            return $this->quantity;
         }
     }
 ?>

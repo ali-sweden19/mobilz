@@ -23,13 +23,14 @@ $this->menu=array(
             </div>
             <div class="col-md-4">
                 <div class="shopping-cart">
-                    <span id="shopping-cart"><?php echo $itemsCount; ?></span> 
-                    <button class="btn btn-sm btn-success">Checkout</button>
+                    <span id="shopping-cart">Items (<?php echo $itemsCount; ?>)</span> 
+                    <a href="<?php echo $this->createUrl('cart/index') ;?>" class="btn btn-sm btn-success">Checkout</a>
                     <button class="btn btn-sm btn-default">My Account</button>
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="row">
         <div class="col-md-12">
             <hr />
@@ -43,7 +44,7 @@ $this->menu=array(
         )); ?>
     </div>
 
-</div>
+</div> <!-- container -->
 
 <!-- Add Ajax call for adding product to cart 
 =================================================== -->

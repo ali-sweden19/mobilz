@@ -19,17 +19,17 @@ class TbButtonColumn extends CButtonColumn
 	/**
 	 * @var string the view button icon (defaults to 'eye-open').
 	 */
-	public $viewButtonIcon = 'eye-open';
+	public $viewButtonIcon = 'fa-eye';
 
 	/**
 	 * @var string the update button icon (defaults to 'pencil').
 	 */
-	public $updateButtonIcon = 'pencil';
+	public $updateButtonIcon = 'fa-edit';
 
 	/**
 	 * @var string the delete button icon (defaults to 'trash').
 	 */
-	public $deleteButtonIcon = 'trash';
+	public $deleteButtonIcon = 'fa-trash-o';
 
 	/**
 	 *### .initDefaultButtons()
@@ -47,7 +47,7 @@ class TbButtonColumn extends CButtonColumn
 			$this->buttons['update']['icon'] = $this->updateButtonIcon;
 		}
 		if ($this->deleteButtonIcon !== false && !isset($this->buttons['delete']['icon'])) {
-			$this->buttons['delete']['icon'] = $this->deleteButtonIcon;
+			$this->buttons['delete']['icon'] =  $this->deleteButtonIcon;
 		}
 	}
 
@@ -86,7 +86,7 @@ class TbButtonColumn extends CButtonColumn
 
 		if (isset($button['icon'])) {
 			if (strpos($button['icon'], 'icon') === false) {
-				$button['icon'] = 'icon-' . implode(' icon-', explode(' ', $button['icon']));
+				$button['icon'] = 'fa ' . implode(' ', explode(' ', $button['icon']));
 			}
 
 			echo CHtml::link('<i class="' . $button['icon'] . '"></i>', $url, $options);

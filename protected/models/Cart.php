@@ -5,11 +5,11 @@
  *
  * The followings are the available columns in table 'cart':
  * @property integer $id
- * @property integer $card_id
+ * @property integer $product_id
  * @property integer $quantity
  *
  * The followings are the available model relations:
- * @property Card $card
+ * @property Product $product
  */
 class Cart extends CActiveRecord
 {
@@ -39,11 +39,11 @@ class Cart extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('card_id, quantity', 'numerical', 'integerOnly'=>true),
+			array('product_id, quantity', 'numerical', 'integerOnly'=>true),
 			array('quantity', 'numerical', 'min'=>1, 'max'=>2),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, card_id, user_id, quantity', 'safe', 'on'=>'search'),
+			array('id, product_id, user_id, quantity', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,19 +55,20 @@ class Cart extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'card' => array(self::BELONGS_TO, 'Card', 'card_id'),
+			'product' => array(self::BELONGS_TO, 'Product', 'product_id'),
 		);
 	}
 
 	public function getThumbImgPath() {
-		$image_file='thumb_'.$this->card->image_file;
-		$image= file_exists(Yii::app()->basePath.'/../images/'.$image_file) ? $image_file : "thumb_no-image.jpg"; 
-		return  Yii::app()->baseUrl . '/images/'.$image;
+        $imagesFolder= Yii::app()->request->baseUrl .'/images/';
+		$image_file='thumb_' . $this->product->image_file;
+		$image= file_exists($imagesFolder . $image_file) ? $image_file : $this->product->image_file; 
+		return '<img style="width:50px;" src="' .  $imagesFolder.$image . '" />';
 		
 	}
 	
 	public function getTotalPrice() {
-		return $this->card->price * $this->quantity;
+		return $this->product->price * $this->quantity;
 	}
 	
 	/**
@@ -77,7 +78,7 @@ class Cart extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'card_id' => 'Card',
+			'product_id' => 'Product',
 			'quantity' => 'Quantity',
 		);
 	}
@@ -94,7 +95,7 @@ class Cart extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('card_id',$this->card_id);
+		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('quantity',$this->quantity);
 
@@ -117,7 +118,7 @@ class Cart extends CActiveRecord
             if($status > 0) {
                 $cart->status_id=$status;
             }
-            $amount = $amount + ($cart->card->price * $cart->quantity);
+            $amount = $amount + ($cart->product->price * $cart->quantity);
             $cart->save();
         }
         return $amount;
@@ -130,10 +131,10 @@ class Cart extends CActiveRecord
         return true;
     }
 
-    public function alreadyExists($user_id, $card_id) {
+    public function alreadyExists($user_id, $product_id) {
         $carts = $this->getCarts($user_id);
         foreach($carts as $cart) {
-            if($cart->card_id==$card_id)
+            if($cart->product_id==$product_id)
                 return TRUE;
         }
         return FALSE;
@@ -165,7 +166,7 @@ class Cart extends CActiveRecord
         if(isset($model)) {
             $amount = 0;
             foreach ($model as $cart) {
-                $amount += ($cart->quantity * $cart->card->price);
+                $amount += ($cart->quantity * $cart->product->price);
             }
             Ipnlog::model()->saveIpnlog($tracking_id, 'findCartAmount:' . $amount);
             return $amount;
@@ -189,5 +190,63 @@ class Cart extends CActiveRecord
             else 
                 return FALSE;
         }
+    }
+    
+    public function getItemsCount() {
+        if(Yii::app()->user->isGuest) {
+            $sessionCart = new SessionCart();
+            $count = $sessionCart->getItemsCount();
+        } else {
+            // @todo change user_id, gives one less
+            $count = Cart::model()->count('user_id=:user_id', array(':user_id' => 1));
+        }
+        return $count;
+    }
+    
+    /**
+     * When the user logins the cart table is updated
+     * By his session carts if there exists any
+     * 
+     */
+    public function updateFromSession() {
+        $sCart = new SessionCart;
+        if($sCart->getItemsCount() == 0) { // if not item then return
+            return;
+        }
+        $sessionCarts = $sCart->getCarts();
+        // @todo change user id
+        $user_id = 1;
+        $carts = Cart::model()->findAllByAttributes(array('user_id'=>$user_id));
+        foreach ($carts as $cart) { // clear previous carts in db
+            $cart->delete();
+        }
+        $this->sessionToCart(TRUE); // update from session
+        
+    }
+    
+    /**
+     * Converts sessionCarts to cart models
+     * if $save is true then saves session cart to db cart table
+     * @return array of carts
+     */
+    public function sessionToCart($save = FALSE) {
+        $carts = array();
+        $sCart = new SessionCart();
+        $sessionCarts = $sCart->getCarts();
+        foreach ($sessionCarts as $sessionCart) {
+            $cart = new Cart;
+            if(! $save)
+                $cart->id = $sessionCart->getId();
+            $cart->product_id = $sessionCart->getId();
+            $cart->quantity = $sessionCart->getQuantity();
+            if($save) {
+                // @todo change user id
+                $cart->user_id = 1; // Yii::app()->user->id;
+                $cart->save();
+            }
+            $carts[] = $cart;
+        }
+        
+        return $carts;
     }
 }

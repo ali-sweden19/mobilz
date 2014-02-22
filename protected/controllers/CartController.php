@@ -28,7 +28,7 @@ class CartController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','add'),
+				'actions'=>array('index','view','add', 'admin', 'delete'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -110,7 +110,12 @@ class CartController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+        if (Yii::app()->user->isGuest) {
+            $sCart = new SessionCart;
+            $sCart->remove($id);
+        } else {
+            $this->loadModel($id)->delete();
+        }
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -120,7 +125,7 @@ class CartController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionIndex2()
 	{
 		$dataProvider=new CActiveDataProvider('Cart');
 		$this->render('index',array(
@@ -131,18 +136,21 @@ class CartController extends Controller
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
+	public function actionIndex()
 	{
-		$model=new Cart('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Cart']))
-			$model->attributes=$_GET['Cart'];
-
+        if(Yii::app()->user->isGuest) {
+            $dataProvider=new CActiveDataProvider('Cart', array(
+                'data'=> Cart::model()->sessionToCart(),
+            ));
+        } else {
+            $dataProvider=new CActiveDataProvider('Cart');
+        }
+        
 		$this->render('admin',array(
-			'model'=>$model,
+			'dataProvider'=>$dataProvider,
 		));
 	}
-
+    
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -176,31 +184,32 @@ class CartController extends Controller
 	 */
     public function actionAdd() {
         $id = $_POST['id'];
-        // check if user is logged in
-        if(Yii::app()->user->isGuest) {
-            // Check if product is valid 
-            $product = Product::model()->getPublishedProduct($id);
-            if ($product === null) {
-                echo json_encode(array(
-                    'status'=>'product-not-valid'
-                ));
-                return;
-            }
-            
-            $cart = new SessionCart();
-            $cart->add($id, 1);
-            $count = $cart->countCarts();
-            
-            $link =  $this->createUrl('cart/index');
-            $linkButton = '<button onclick=window.location.href="'.$link.'" type="button" class="view_cart btn btn-info">View</button>';
-
+        // Check if product is valid 
+        $product = Product::model()->getPublishedProduct($id);
+        if ($product === null) {
             echo json_encode(array(
-                'status'=>'ok',
-                'items'=>"Items ($count)",
-                'linkButton'=>$linkButton,
+                'status'=>'product-not-valid'
             ));
-            
             return;
         }
+        
+        $link =  $this->createUrl('cart/index');
+        $linkButton = '<button onclick=window.location.href="'.$link.'" type="button" class="view_cart btn btn-info">View</button>';
+        
+        // check if user is logged in
+        if(Yii::app()->user->isGuest) {
+            $cart = new SessionCart();
+            $cart->add($id, 1);
+            $cart->saveToSession();
+        } else {
+            // @todo change user_id
+            Cart::model()->addProduct($product, 1);
+        }
+        $count = Cart::model()->getItemsCount();
+        echo json_encode(array(
+            'status'=>'ok',
+            'items'=>"Items ($count)",
+            'linkButton'=>$linkButton,
+        ));
 	}
 }

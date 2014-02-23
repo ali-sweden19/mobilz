@@ -221,8 +221,8 @@ class Cart extends CActiveRecord
         }
         $sessionCarts = $sCart->getCarts();
         // @todo change user id
-        $user_id = 1;
-        $carts = Cart::model()->findAllByAttributes(array('user_id'=>$user_id));
+        $user_id = Yii::app()->user->id;
+        $carts = $this->getCarts($user_id);
         foreach ($carts as $cart) { // clear previous carts in db
             $cart->delete();
         }
@@ -246,8 +246,7 @@ class Cart extends CActiveRecord
             $cart->product_id = $sessionCart->getId();
             $cart->quantity = $sessionCart->getQuantity();
             if($save) {
-                // @todo change user id
-                $cart->user_id = 1; // Yii::app()->user->id;
+                $cart->user_id = Yii::app()->user->id;
                 $cart->save();
             }
             $carts[] = $cart;

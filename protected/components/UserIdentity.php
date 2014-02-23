@@ -46,8 +46,6 @@ class UserIdentity extends CUserIdentity
 	        return !$this->errorCode;
 	        
 		} else {
-			
-			/* Uncomment the following if you want to use DB based user authentication, may for external users */
 			$user=User::model()->findByAttributes(array('email'=>$this->username));
 			if($user===null)
 	            $this->errorCode=self::ERROR_USERNAME_INVALID;

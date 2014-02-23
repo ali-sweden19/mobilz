@@ -18,6 +18,31 @@ USE `mobilz`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(25) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `roles` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `cart`
 --
 
@@ -38,7 +63,7 @@ CREATE TABLE `cart` (
   CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `status_id` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,6 +72,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (27,1,2,1,NULL,NULL),(29,3,2,1,NULL,NULL),(30,2,1,2,NULL,NULL),(31,3,1,2,NULL,NULL);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +174,7 @@ CREATE TABLE `user` (
   `provider` varchar(15) DEFAULT NULL,
   `identifier` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +183,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (24,'Hazrat','123','iloveyii@yahoo.com','0763391076','Ali',NULL,NULL),(26,'Ali','123','tocomputerscientist@gmail.com',NULL,'Bth','Facebook','1778938380'),(27,'Sofie',NULL,'sofie.jonsson21@yahoo.com',NULL,'Jonsson','Facebook','100007681382802'),(28,'Hazrat ','12345678','ali.sweden@gmx.com','123','Ali',NULL,NULL);
+INSERT INTO `user` VALUES (1,'Hazrat','123','iloveyii@yahoo.com','0763391076','Ali',NULL,NULL),(2,'Ali','123','tocomputerscientist@gmail.com',NULL,'Bth','Facebook','1778938380'),(4,'Hazrat ','12345678','ali.sweden@gmx.com','123','Ali',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -170,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-02-21 14:16:35
+-- Dump completed on 2014-02-23  0:32:57

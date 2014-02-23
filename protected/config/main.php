@@ -38,6 +38,9 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+        'session' => array (
+            'autoStart' => TRUE,
+        ),
         'bootstrap' => array(
 		    'class' => 'ext.bootstrap.components.Bootstrap',
 		    'responsiveCss' => true,

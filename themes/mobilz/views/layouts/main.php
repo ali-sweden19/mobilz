@@ -13,6 +13,9 @@
     <!-- Add custom CSS here -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/main.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/font-awesome.css" media="screen, projection" />
+    <script type="text/javascript">
+      var PAYMILL_PUBLIC_KEY = '29006429487df92eae0ba378589e7b7a';
+  </script>
   </head>
 
   <body>

@@ -28,7 +28,7 @@ class CartController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','add', 'admin', 'delete'),
+				'actions'=>array('index','view','add', 'admin', 'delete', 'checkout', 'request'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -268,4 +268,31 @@ class CartController extends Controller
             'linkButton'=>$linkButton,
         ));
 	}
+    
+    public function actionCheckout() {
+        $this->render('checkout');
+    }
+    
+    public function actionRequest() {
+        define('PAYMILL_API_KEY', 'c383e7650e883db37628117aa6e7eb40');
+        
+        if (isset($_POST['paymillToken'])) {
+            // print_r($_POST['paymillToken']); exit;
+            $token = $_POST['paymillToken'];
+            $request = new Paymill\Request(PAYMILL_API_KEY);
+            $transaction = new Paymill\Models\Request\Transaction();
+            $transaction->setAmount(4200) // e.g. "4200" for 42.00 EUR
+                        ->setCurrency('SEK')
+                        ->setToken($token)
+                        ->setDescription('Test Transaction');
+        
+            $response = $request->create($transaction);
+            print_r($response); 
+               
+            echo $response->getResponseCode();
+            echo $response->getCurrency();
+            var_dump($response);
+        }
+        
+    }
 }

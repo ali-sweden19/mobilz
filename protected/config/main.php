@@ -65,7 +65,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=mobilz',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'root',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(

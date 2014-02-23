@@ -270,28 +270,49 @@ class CartController extends Controller
 	}
     
     public function actionCheckout() {
-        $this->render('checkout');
+        $amount = Cart::model()->findCartAmount(FALSE);
+        if($amount <=0) {
+            Yii::app()->user->setFlash('error', 'Please add a product to cart and then checkout.');
+        }
+        $this->render('checkout', array(
+            'amount'=>$amount,
+        ));
     }
     
     public function actionRequest() {
         define('PAYMILL_API_KEY', 'c383e7650e883db37628117aa6e7eb40');
         
         if (isset($_POST['paymillToken'])) {
-            // print_r($_POST['paymillToken']); exit;
             $token = $_POST['paymillToken'];
+            // check if already processed
+            if(Paymilltoken::model()->alreadyProcessed($token)) {
+                Yii::app()->user->setFlash('error', 'Your order has already been processed.');
+                $this->render('request');
+                return;
+            } else {
+                Paymilltoken::model()->addToken($token);
+                Cart::model()->saveToken($token, self::PAYSON_FORWARDED);
+            }
+            $amount = Cart::model()->findCartAmount(FALSE);
+            
             $request = new Paymill\Request(PAYMILL_API_KEY);
             $transaction = new Paymill\Models\Request\Transaction();
-            $transaction->setAmount(4200) // e.g. "4200" for 42.00 EUR
-                        ->setCurrency('SEK')
+            $transaction->setAmount($amount) // e.g. "4200" for 42.00 EUR
+                        ->setCurrency('USD')
                         ->setToken($token)
                         ->setDescription('Test Transaction');
         
             $response = $request->create($transaction);
-            print_r($response); 
-               
-            echo $response->getResponseCode();
-            echo $response->getCurrency();
-            var_dump($response);
+            
+            if($response->getResponseCode()==20000 and $response->getCurrency()=='USD') {
+                Cart::model()->saveToken($token, self::IPN_AMOUNT_OK);
+                Purchase::model()->addCarts($token);
+                
+                Yii::app()->user->setFlash('success', 'Checkout success');
+            } else {
+                Yii::app()->user->setFlash('error', 'Some error occurred');
+            }
+            $this->render('request');
         }
         
     }

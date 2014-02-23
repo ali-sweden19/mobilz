@@ -40,79 +40,50 @@
         <div class="col-md-10 col-md-offset-1">
             
             
-            <form id="payment-form" action="<?php echo $this->createUrl('cart/request'); ?>" method="POST">
-                <div class="clearfix"></div>
+            <form class="form-horizontal" autocomplete="off" id="payment-form" action="<?php echo $this->createUrl('cart/request'); ?>" method="POST">
 
                 <div id="payment-form-cc" class="payment-input">
-                  <input class="card-amount" type="hidden" value="40"/>
-                  <input class="card-currency" type="hidden" value="EUR"/>
-                  <div class="controls controls-row">
-                    <div class="span3"><label>Card number</label>
-                        <input class="card-number span3" type="text" size="20" value="4111111111111111"/>
-                    </div>
-                    <div class="span1"><label>CVC</label>
-                        <input class="card-cvc span1" type="text" size="4" value="111"/>
+                  <input class="card-amount" type="hidden" value="<?php echo $amount ;?>"/>
+                  <input class="card-currency" type="hidden" value="USD"/>
+                  <div class="form-group">
+                      <label  class="col-xs-3 col-sm-2 control-label">Amount($)</label>
+                      <label style="text-align: left;" class="col-xs-3 col-sm-2 control-label"><?php echo $amount ;?></label>
+                  </div>
+                  <div class="form-group">
+                      <label for="card-number" class="col-xs-3 col-sm-2 control-label">Card number</label>
+                      <div class="col-xs-9 col-sm-6 col-md-4">
+                        <input name="card-number" class="card-number form-control" type="text" size="20" value="4111111111111111"/>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="card-number" class="col-xs-3 col-sm-2 control-label">CVC</label>
+                    <div class="col-xs-9 col-sm-6 col-md-4">
+                        <input class="card-cvc form-inline" type="text" size="4" value="111"/>
                     </div>
                   </div>
-                  <div class="controls">
-                    <div class="span4">
-                      <label>Card holder</label>
-                      <input class="card-holdername span4" type="text" size="20" value="Max Mustermann"/>
-                    </div>
-                  </div>
-                  <div class="controls">
-                    <div class="span3">
-                      <label>Valid until (MM/YYYY)</label>
-                      <input class="card-expiry-month span1" type="text" size="2" value="12"/>
-                      <span> / </span>
-                      <input class="card-expiry-year span1" type="text" size="4" value="2015"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="payment-form-elv" class="payment-input" style="display: none;">
-                  <div class="controls">
-                    <div class="span3">
-                      <label>Account holder</label>
-                      <input class="elv-holdername span3" type="text" size="20" value="Max Mustermann"/>
-                    </div>
-                  </div>
-                  <div class="controls controls-row">
-                    <div class="span3"><label>Account number</label>
-                        <input class="elv-account span3" type="text" size="20" value="1234567890"/>
-                    </div>
-                  </div>
-                  <div class="controls">
-                    <div class="span3">
-                      <label>Bank code</label>
-                      <input class="elv-bankcode span3" type="text" size="20" value="40050150"/>
-                    </div>
+                  
+                  <div class="form-group">
+                      <label for="card-number" class="col-xs-3 col-sm-2 control-label">Card holder</label>
+                      <div class="col-xs-9 col-sm-6 col-md-4">
+                        <input class="card-holdername form-control" type="text" size="20" value="Max Mustermann"/>
+                      </div>
+                  </div> 
+                  
+                  
+                  <div class="form-group">
+                      <label for="card-number" class="col-xs-3 col-sm-2 control-label">Valid until (MM/YYYY)</label>
+                      <div class="col-xs-9 col-sm-6 col-md-4">
+                        <input class="card-expiry-month  form-inline" type="text" size="2" value="12"/>
+                        <input class="card-expiry-year form-inline" type="text" size="4" value="2015"/>
+                      </div>
                   </div>
                 </div>
-
-                <div id="payment-form-iban" class="payment-input" style="display: none;">
-                  <div class="controls">
-                    <div class="span3">
-                      <label translate="iframe">Kontoinhaber</label>
-                      <input class="ibanbic-holdername span3" type="text" size="20" value="Max Mustermann"/>
-                    </div>
-                  </div>
-                  <div class="controls controls-row">
-                    <div class="span3"><label translate="iframe">IBAN</label>
-                        <input class="iban span3" type="text" size="27" value="DE12 3456 7890 1234 5678 90"/>
-                    </div>
-                  </div>
-                  <div class="controls">
-                    <div class="span3">
-                      <label translate="iframe">BIC</label>
-                      <input class="bic span3" type="text" size="20" value="MARKDEF1100"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="controls">
-                  <div class="span3">
-                    <button class="submit-button btn btn-primary" type="submit">Buy now</button>
+                
+                <div class="form-group">
+                  <div class="col-xs-offset-3 col-xs-9 col-sm-offset-2 col-sm-6 col-md-4">
+                    <?php  if(! ($amount <=0)) { ?>
+                    <button class="btn btn-large btn-success " type="submit">Pay now</button>
+                    <?php } ?>
                   </div>
                 </div>
             </form>
@@ -120,6 +91,8 @@
         </div>
     </div>
 </div>
+
+<br /><br /><br />
 
 
 

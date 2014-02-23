@@ -110,11 +110,12 @@ class Cart extends CActiveRecord
      * @param ind $tracking_id
      * @return double $amount total amount of Cart items
      */
-    public function saveTrackingID($user_id, $tracking_id, $status=0) {
+    public function saveToken($token, $status=0) {
+        $user_id = Yii::app()->user->id;
         $carts = $this->getCarts($user_id);
-        $amount=0;
+        $amount = 0;
         foreach ($carts as $cart) {
-            $cart->tracking_id=$tracking_id;
+            $cart->token=$token;
             if($status > 0) {
                 $cart->status_id=$status;
             }
@@ -142,7 +143,7 @@ class Cart extends CActiveRecord
 
     public function getCarts($user_id) {
         $criteria = new CDbCriteria;
-        $criteria->condition="user_id=$user_id AND (status_id <> 3 OR status_id is NULL)";
+        $criteria->condition="user_id=$user_id";
         $carts = Cart::model()->findAll($criteria);
         return $carts;
     }
@@ -162,7 +163,12 @@ class Cart extends CActiveRecord
     }
     
     public function findCartAmount($tracking_id) {
-        $model= Cart::model()->findAllByAttributes(array('tracking_id'=>$tracking_id));
+        if($tracking_id === FALSE) {
+            $user_id = Yii::app()->user->id;
+            $model= Cart::model()->findAllByAttributes(array('user_id'=>$user_id));
+        } else {
+            $model= Cart::model()->findAllByAttributes(array('tracking_id'=>$tracking_id));
+        }
         if(isset($model)) {
             $amount = 0;
             foreach ($model as $cart) {

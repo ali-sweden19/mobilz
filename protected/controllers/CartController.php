@@ -123,17 +123,6 @@ class CartController extends Controller
 	}
 
 	/**
-	 * Lists all models.
-	 */
-	public function actionIndex2()
-	{
-		$dataProvider=new CActiveDataProvider('Cart');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
-	/**
 	 * Manages all models.
 	 */
 	public function actionIndex()
@@ -279,6 +268,10 @@ class CartController extends Controller
         ));
     }
     
+    /**
+     * This method process the request of payment if the token is set
+     * @return type
+     */
     public function actionRequest() {
         define('PAYMILL_API_KEY', 'c383e7650e883db37628117aa6e7eb40');
         
@@ -293,16 +286,13 @@ class CartController extends Controller
                 Paymilltoken::model()->addToken($token);
                 Cart::model()->saveToken($token, self::PAYSON_FORWARDED);
             }
-            $amount = Cart::model()->findCartAmount(FALSE);
             
-            $request = new Paymill\Request(PAYMILL_API_KEY);
-            $transaction = new Paymill\Models\Request\Transaction();
-            $transaction->setAmount($amount) // e.g. "4200" for 42.00 EUR
-                        ->setCurrency('USD')
-                        ->setToken($token)
-                        ->setDescription('Test Transaction');
-        
-            $response = $request->create($transaction);
+            $amount = Cart::model()->findCartAmount(FALSE);
+            $currency = 'USD';
+            $description = 'Test Transaction';
+             
+            $PaymillAPI = new PaymillAPI(PAYMILL_API_KEY);
+            $response = $PaymillAPI->doTransaction($amount, $currency, $token, $description);
             
             if($response->getResponseCode()==20000 and $response->getCurrency()=='USD') {
                 Cart::model()->saveToken($token, self::IPN_AMOUNT_OK);
@@ -314,6 +304,5 @@ class CartController extends Controller
             }
             $this->render('request');
         }
-        
     }
 }

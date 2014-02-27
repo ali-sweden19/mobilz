@@ -39,7 +39,7 @@ class Purchase extends CActiveRecord
 			array('purchase_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, token, user_id, product_id, quantity, purchase_date, status_id, sent, shortage', 'safe', 'on'=>'search'),
+			array('id, token_id, user_id, product_id, quantity, purchase_date, status_id, sent, shortage', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +51,7 @@ class Purchase extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'token' => array(self::BELONGS_TO, 'Paymilltoken', 'token_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
@@ -62,7 +63,7 @@ class Purchase extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'token' => 'Token',
+			'token_id' => 'Token',
 			'user_id' => 'User',
 			'product_id' => 'Product',
 			'quantity' => 'Quantity',

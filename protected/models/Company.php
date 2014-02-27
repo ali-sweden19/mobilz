@@ -28,13 +28,9 @@ class Company extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('name, slug', 'length', 'max'=>45),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, name, slug', 'safe', 'on'=>'search'),
+			array('name, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,8 +39,6 @@ class Company extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'products' => array(self::HAS_MANY, 'Product', 'company_id'),
 		);

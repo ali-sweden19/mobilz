@@ -1,5 +1,6 @@
 <?php
-
+// $yii='/opt/lampp/htdocs/yii/framework/yii.php';
+// require_once($yii);
 /**
  * This is the model class for table "paymilltoken".
  *
@@ -22,12 +23,8 @@ class Paymilltoken extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('token', 'length', 'max'=>25),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, token', 'safe', 'on'=>'search'),
 		);
 	}
@@ -37,9 +34,8 @@ class Paymilltoken extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+			'purchases' => array(self::HAS_MANY, 'Purchase', 'token_id'),
 		);
 	}
 
@@ -100,8 +96,12 @@ class Paymilltoken extends CActiveRecord
     }
     
     public function addToken($token) {
-        $model = new Paymilltoken;
-        $model->token = $token;
-        $model->save();
+        if(!$this->alreadyProcessed($token)) {
+            $model = new Paymilltoken;
+            $model->token = $token;
+            return $model->save();
+        } else {
+            return FALSE;
+        }
     }
 }

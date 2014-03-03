@@ -85,3 +85,5 @@ Sol: create/make the directory "path/protected/runtime" writeable by webserver
 2:- If you see an error like the following
 CAssetManager.basePath "path/mobilz/assets" is invalid. 
 Sol: create/make the directory "path/mobilz/assets" writeable by webserver
+
+3. Make mobilz/data/test.txt writeable.

@@ -189,6 +189,11 @@ class ProductController extends Controller
 		}
 	}
     
+    /**
+     * It sets the path of the images folder
+     * @param type $action
+     * @return boolean
+     */
     public function beforeAction($action) {
         $this->imagesFolder= Yii::app()->request->baseUrl .'/images/';
         return TRUE;

@@ -48,6 +48,8 @@ class CartController extends Controller
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
+     * 
+     * @render view
 	 */
 	public function actionView($id)
 	{
@@ -59,6 +61,8 @@ class CartController extends Controller
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
+     * 
+     * @render create view
 	 */
 	public function actionCreate()
 	{
@@ -83,6 +87,7 @@ class CartController extends Controller
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
+     * @render update view
 	 */
 	public function actionUpdate($id)
 	{
@@ -146,6 +151,12 @@ class CartController extends Controller
 		));
 	}
     
+    /**
+     * Updats the quantity of item in the cart
+     * It checks if the user is not logged in then updates the session cart
+     * If user is logged in then updates the AR cart
+     * Shows user flash on success
+     */
     private function updateQuantity() {
         if (isset($_POST['quantity'])) { // you want to update cart 
             $quantity = $_POST['quantity']; $model_errors='';
@@ -226,6 +237,7 @@ class CartController extends Controller
     
     /**
 	 * To add item by ajax to Cart
+     * @return JSON response
 	 */
     public function actionAdd() {
         $id = $_POST['id'];
@@ -258,6 +270,10 @@ class CartController extends Controller
         ));
 	}
     
+    /**
+     * This action provide the customers to enter CC details
+     * The amount of the cart must be logged in to checkout
+     */
     public function actionCheckout() {
         $amount = Cart::model()->findCartAmount(FALSE);
         if($amount <=0) {
@@ -270,7 +286,9 @@ class CartController extends Controller
     
     /**
      * This method process the request of payment if the token is set
-     * @return type
+     * And shows the status of the transaction
+     * 
+     * @render request view
      */
     public function actionRequest() {
         define('PAYMILL_API_KEY', 'c383e7650e883db37628117aa6e7eb40');

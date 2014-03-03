@@ -54,3 +54,9 @@
 ============= saveIpnlog(, findCartAmount:10600) ================
 
 ============= saveIpnlog(, findCartAmount:10600) ================
+
+============= saveIpnlog(, findCartAmount:3600) ================
+
+============= saveIpnlog(, findCartAmount:3600) ================
+
+============= saveIpnlog(, findCartAmount:3600) ================

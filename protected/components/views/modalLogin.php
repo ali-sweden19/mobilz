@@ -1,4 +1,4 @@
-<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
+<div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
         <?php echo CHtml::beginForm(); ?>
         <fieldset>
             <div class="form-group">

@@ -46,16 +46,18 @@
                     <li><a href="<?php echo $this->createUrl('site/contact'); ?>">Contact</a></li>
                 </ul>
                 
-                <form action="" class="navbar-form navbar-right">
-                <div class="input-group">
-                    <input type="Search" placeholder="Search..." class="form-control" />
-                    <div class="input-group-btn">
-                        <button class="btn btn-info">
-                        <span class="glyphicon glyphicon-search"></span>
-                        </button>
+                <div class="col-md-3 pull-right">
+                    <form action="" class="navbar-form navbar-right">
+                    <div class="input-group">
+                        <input type="Search" placeholder="Search..." class="form-control" />
+                        <div class="input-group-btn">
+                            <button class="btn btn-info">
+                            <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
                     </div>
+                    </form>
                 </div>
-                </form>
             </div>
 
         </div>
@@ -97,7 +99,7 @@
                         </p>
                         <!-- Modal -->
                         <div class="modal fade" id="terms" role="dialog" aria-hidden="true" tabindex="-1">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog" style="width: 430px;">
                                 <div class="modal-content">
                                     <i id="pty_close" data-dismiss="modal" class="fa fa-times-circle-o icon-md pull-right"></i>
                                     <div class="modal-header" style="padding: 10px;">

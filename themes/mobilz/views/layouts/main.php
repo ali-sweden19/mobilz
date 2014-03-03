@@ -99,7 +99,7 @@
                         </p>
                         <!-- Modal -->
                         <div class="modal fade" id="terms" role="dialog" aria-hidden="true" tabindex="-1">
-                            <div class="modal-dialog" style="width: 430px;">
+                            <div class="modal-dialog dg">
                                 <div class="modal-content">
                                     <i id="pty_close" data-dismiss="modal" class="fa fa-times-circle-o icon-md pull-right"></i>
                                     <div class="modal-header" style="padding: 10px;">

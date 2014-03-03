@@ -1,6 +1,10 @@
 <?php
 Yii::import('zii.widgets.CPortlet');
- 
+
+/**
+ * Login Widget
+ * Displays the modal login box
+ */
 class Modallogin extends CPortlet
 {
 	public $title='';

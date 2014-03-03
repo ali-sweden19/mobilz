@@ -1,4 +1,9 @@
-<?php   
+<?php  
+
+    /**
+     * Maitains session cart
+     * 
+     */
     class SessionCart {
 
         private static $carts =  array();
@@ -8,14 +13,25 @@
         public function __construct() {
             self::getFromSession();
         }
-
+        
+        /**
+         * Adds product
+         * @param integer $id
+         * @param integer $quantity
+         */
         public static function add($id, $quantity) {
             $cart = new SessionCart;
             $cart->id = $id;
             $cart->quantity = $quantity;
             self::$carts[$id] = $cart;
         }
-
+        
+        /**
+         * Updates the quantity of the cart if exists
+         * @param integer $id
+         * @param interger $quantity
+         * @return boolean
+         */
         public function updateQuantity($id, $quantity) {
             if(! isset(self::$carts[$id]))
                 return FALSE;
@@ -26,6 +42,11 @@
             return TRUE;
         }
         
+        /**
+         * Removes product if exists from cart
+         * @param integer $id
+         * @return boolean
+         */
         public function remove($id) {
             if(! isset(self::$carts[$id]))
                 return FALSE;
@@ -34,22 +55,35 @@
             return TRUE;
         }
 
+        /**
+         * Returns all the carts
+         * @return SessionCart array 
+         */
         public static function getCarts() {
             return self::$carts;
         }
         
+        /**
+         * Returns the no of items in the cart
+         * @return integer
+         */
         public static function getItemsCount() {
             $count = self::countCarts();
             return $count;
         }
+        
+        /**
+         * Helper for counting items
+         * @return integer
+         */
         public static function countCarts() {
             return count(self::$carts);
         }
         
+        /**
+         * Saves the current Cart to session
+         */
         public static function saveToSession() {
-            // session_start(); // this makes the $_SESSION set, without the need to set a value in it.
-            // session_unset(); // it does not unset $_SESSION
-            // unset($_SESSION); // however this does unset $_SESSION
             
             // check if session is started
             if(isset($_SESSION)) {
@@ -62,6 +96,9 @@
             }
         }
         
+        /**
+         * Get carts from session
+         */
         public static function getFromSession() {
             if(! isset($_SESSION)) {
                 session_start();
@@ -78,10 +115,18 @@
             self::saveToSession();
         }
         
+        /**
+         * Returns the ID of the current cart
+         * @return integer
+         */
         public function getId() {
             return $this->id;
         }
         
+        /**
+         * Returns the quantity of the current cart item
+         * @return integer
+         */
         public function getQuantity() {
             return $this->quantity;
         }

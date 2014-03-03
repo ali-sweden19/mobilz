@@ -118,6 +118,12 @@ class Purchase extends CActiveRecord
 		return parent::model($className);
 	}
     
+    /**
+     * Add Carts after payment to order/purchase table
+     * Then deletes/clear Carts
+     * 
+     * @param string $token
+     */
     public function addCarts($token) {
         $user_id = Yii::app()->user->id;
         $carts = Cart::model()->getCarts($user_id, $token);

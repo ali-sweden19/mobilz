@@ -1,6 +1,5 @@
 <?php
-// $yii='/opt/lampp/htdocs/yii/framework/yii.php';
-// require_once($yii);
+
 /**
  * This is the model class for table "paymilltoken".
  *
@@ -87,6 +86,12 @@ class Paymilltoken extends CActiveRecord
 		return parent::model($className);
 	}
     
+    /**
+     * Checks if the given token is already processed
+     * 
+     * @param string $token
+     * @return boolean
+     */
     public function alreadyProcessed($token) {
         $model = Paymilltoken::model()->findByAttributes(array('token'=>$token));
         if(isset($model)) {
@@ -95,6 +100,12 @@ class Paymilltoken extends CActiveRecord
         return FALSE;
     }
     
+    /**
+     * Adds token to DB
+     * 
+     * @param string $token
+     * @return boolean
+     */
     public function addToken($token) {
         if(!$this->alreadyProcessed($token)) {
             $model = new Paymilltoken;

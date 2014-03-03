@@ -36,13 +36,9 @@ class Cart extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('product_id, quantity', 'numerical', 'integerOnly'=>true),
 			array('quantity', 'numerical', 'min'=>1, 'max'=>2),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
 			array('id, product_id, user_id, quantity', 'safe', 'on'=>'search'),
 		);
 	}
@@ -52,13 +48,16 @@ class Cart extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'product' => array(self::BELONGS_TO, 'Product', 'product_id'),
 		);
 	}
 
+    /**
+     * Provides path to the image thumb
+     * 
+     * @return string image tag with image src
+     */
 	public function getThumbImgPath() {
         $imagesFolder= Yii::app()->request->baseUrl .'/images/';
 		$image_file='thumb_' . $this->product->image_file;
@@ -67,6 +66,11 @@ class Cart extends CActiveRecord
 		
 	}
 	
+    /**
+     * Calculates the total price for the current model
+     * 
+     * @return integer
+     */
 	public function getTotalPrice() {
 		return $this->product->price * $this->quantity;
 	}
@@ -104,10 +108,10 @@ class Cart extends CActiveRecord
 		));
 	}
     /**
-     * Finds tracking_id and save new one there. The current id in rec
-     * is available one, adds one to it and saves back
-     * @param int $user_id
-     * @param ind $tracking_id
+     * Finds carts with specified token and sets their status
+     * 
+     * @param string $toekn
+     * @param integer $status
      * @return double $amount total amount of Cart items
      */
     public function saveToken($token, $status=0) {
@@ -125,6 +129,12 @@ class Cart extends CActiveRecord
         return $amount;
     }
     
+    /**
+     * Checks if cart is empty for the user
+     * 
+     * @param integer $user_id
+     * @return boolean
+     */
     public function cartEmpty($user_id) {
         $carts=$this->getCarts($user_id);
         if(isset($carts) && count($carts) > 0)
@@ -132,6 +142,13 @@ class Cart extends CActiveRecord
         return true;
     }
 
+    /**
+     * Checks if a product already exists in the user cart
+     * 
+     * @param integer $user_id
+     * @param integer $product_id
+     * @return boolean
+     */
     public function alreadyExists($user_id, $product_id) {
         $carts = $this->getCarts($user_id);
         foreach($carts as $cart) {
@@ -141,12 +158,26 @@ class Cart extends CActiveRecord
         return FALSE;
     }
 
+    /**
+     * Finds and returns the carts of a user
+     * 
+     * @param integer $user_id
+     * @return Cart
+     */
     public function getCarts($user_id) {
         $criteria = new CDbCriteria;
         $criteria->condition="user_id=$user_id";
         $carts = Cart::model()->findAll($criteria);
         return $carts;
     }
+    
+    /**
+     * Find carts by tracking ID in the specified status (default 10)
+     * 
+     * @param integer $tracking_id
+     * @param integer $status
+     * @return Cart
+     */
     public function getCartsByTrackingID($tracking_id, $status=10) {
         $criteria = new CDbCriteria; 
         $criteria->condition="tracking_id=$tracking_id AND status_id= $status";
@@ -154,6 +185,12 @@ class Cart extends CActiveRecord
         return $carts;
     }
     
+    /**
+     * Finds carts by tracking id and sets their status
+     * 
+     * @param integer $tracking_id
+     * @param interger $status
+     */
     public function setStatus($tracking_id, $status) {
         $carts = Cart::model()->findAllByAttributes(array('tracking_id'=>$tracking_id));
         foreach ($carts as $cart) {
@@ -162,6 +199,12 @@ class Cart extends CActiveRecord
         }
     }
     
+    /**
+     * Find the total cart amount for all the items
+     * 
+     * @param integer $tracking_id
+     * @return double
+     */
     public function findCartAmount($tracking_id) {
         if($tracking_id === FALSE) {
             $user_id = Yii::app()->user->id;
@@ -182,6 +225,13 @@ class Cart extends CActiveRecord
         }
     }
     
+    /**
+     * Adds a product to a user cart
+     * 
+     * @param Product $product
+     * @param integer $user_id
+     * @return boolean
+     */
     public function addProduct($product, $user_id) {
         // check if already added
         if ($this->alreadyExists($user_id, $product->id))  { 
@@ -198,6 +248,11 @@ class Cart extends CActiveRecord
         }
     }
     
+    /**
+     * Finds and return the no of items in the cart
+     * 
+     * @return integer
+     */
     public function getItemsCount() {
         if(Yii::app()->user->isGuest) {
             $sessionCart = new SessionCart();
@@ -220,7 +275,6 @@ class Cart extends CActiveRecord
             return;
         }
         $sessionCarts = $sCart->getCarts();
-        // @todo change user id
         $user_id = Yii::app()->user->id;
         $carts = $this->getCarts($user_id);
         foreach ($carts as $cart) { // clear previous carts in db

@@ -24,13 +24,9 @@ class Admin extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('username', 'length', 'max'=>25),
 			array('password, roles', 'length', 'max'=>45),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, username, password, roles', 'safe', 'on'=>'search'),
 		);
 	}
@@ -40,8 +36,6 @@ class Admin extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 		);
 	}

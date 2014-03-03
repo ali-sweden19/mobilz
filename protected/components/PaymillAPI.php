@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Wrapper for performing Paymill transaction
+ * 
+ */
 class PaymillAPI {
 
     private $request;
@@ -33,10 +37,18 @@ class PaymillAPI {
         return $this->response;
     }
     
+    /**
+     * Returns the response code from paymill
+     * @return integer
+     */
     public function getResponseCode() {
         return $this->response->getResponseCode();
     }
     
+    /**
+     * Retrurns currency code
+     * @return string
+     */
     public function getCurrency() {
         return $this->response->getCurrency();
     }

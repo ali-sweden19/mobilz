@@ -61,10 +61,18 @@ class UserIdentity extends CUserIdentity
 		}
 	}
 	
+    /**
+     * Returns ID
+     * @return integer
+     */
 	public function getId() {
 		return $this->_id;
 	}
 	
+    /**
+     * Checks if the user has adminsitrative account
+     * @return boolean
+     */
     private function isAdminUser() {
     	$adminUser= Admin::model()->findByAttributes(array('username'=>$this->username));
     	if ($adminUser===null)

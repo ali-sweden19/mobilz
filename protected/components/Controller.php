@@ -5,6 +5,9 @@
  */
 class Controller extends CController
 {
+    /**
+     * The constants for payment transaction for Payson and Paymill
+     */
     const ADDED_TO_CART=1; //  'When the item is first added to Cart. Cart will only display items in this '
     const PAYSON_FORWARDED=2;
     const PAYSON_RETURN_OK=3;
@@ -23,10 +26,12 @@ class Controller extends CController
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
 	 */
 	public $layout='//layouts/column1';
+    
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */
 	public $menu=array();
+    
 	/**
 	 * @var array the breadcrumbs of the current page. The value of this property will
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}

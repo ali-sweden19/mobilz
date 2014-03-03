@@ -1,6 +1,4 @@
 <?php
-// $yii='/opt/lampp/htdocs/yii/framework/yii.php';
-// require_once($yii);
 
 /**
  * This is the model class for table "company".

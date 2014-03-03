@@ -113,6 +113,12 @@ class Product extends CActiveRecord
 		return parent::model($className);
 	}
     
+    /**
+     * Finds/checks and returns published product
+     * 
+     * @param integer $id
+     * @return Poduct
+     */
     public function getPublishedProduct($id) {
        $model = Product::model()->findByAttributes(array('id'=>$id, 'published'=>'yes'));
        return $model;

@@ -99,7 +99,11 @@ class Ipnlog extends CActiveRecord
 		return parent::model($className);
 	}
     
-    
+    /**
+     * Computes the date and time before saving 
+     * 
+     * @return boolean
+     */
     protected function beforeSave() {
         if(parent::beforeSave()){
             $this->date=date("Y-m-d H:i:s");
@@ -109,6 +113,12 @@ class Ipnlog extends CActiveRecord
         }
     } 
     
+    /**
+     * Saves log for tracking id
+     * 
+     * @param integer $tracking_id
+     * @param string $description
+     */
     public function saveIpnlog($tracking_id, $description) {
         $filename = dirname(Yii::app()->request->scriptFile).'/data/'.'test.txt';
         file_put_contents($filename, "\n============= saveIpnlog($tracking_id, $description) ================\n" , FILE_APPEND);
